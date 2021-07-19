@@ -1,0 +1,28 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.app__size-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.app__line {
+  display: flex;
+  flex-direction: row;
+}
+.app__cell {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #a7a2a2;
+  box-sizing: border-box;
+  cursor: crosshair;
+}
+
+.app__cell_live {
+  background-color: #000000;
+}
