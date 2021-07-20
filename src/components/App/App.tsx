@@ -2,6 +2,8 @@ import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { minSizeMatrix, maxSizeMatrix } from '../utils/constants';
 import InputRadio from '../InputRadio/InputRadio';
+import Button from '../Button/Button';
+import Input from '../Input/Input';
 import './App.css';
 
 type matrix = number[][];
@@ -11,7 +13,7 @@ const App: React.FC = () => {
   const [width, setWidth] = useState<number>(10);
   const [height, setHeight] = useState<number>(10);
   const [isMousePressed, setIsMousePressed] = useState<boolean>(false);
-  const [lifeSpeed, setLifeSpeed] = useState<number>(1000);
+  const [lifeSpeed, setLifeSpeed] = useState<number>(700);
   const [lifeIsGoing, setLifeIsGoing] = useState<boolean>(false);
   const curInterval = useRef<any>();
 
@@ -152,53 +154,47 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <h1 className="app__title">Игра "Жизнь"</h1>
-      <div className="app__size-container">
-        <input
-          value={width}
-          onChange={changeWidth}
-          type="number"
-          min={minSizeMatrix}
-          max={maxSizeMatrix}
-        />
-        <input
-          value={height}
-          onChange={changeHeight}
-          type="number"
-          min={minSizeMatrix}
-          max={maxSizeMatrix}
-        />
-        <button onClick={updateMatrixSize}>Задать размер</button>
+      <div className="app__btn-container">
+        <Button onClick={handleStartGame} title="Старт" />
+        <Button onClick={handleStopGame} title="Стоп" />
+        <Button onClick={randomlyGenerate} title="Случайно" />
+        <Button onClick={handleOneStep} title="Один шаг" />
+        <Button onClick={handleClearMatrix} title="Отчистить" />
       </div>
-      <button onClick={handleStartGame}>Старт</button>
-      <button onClick={randomlyGenerate}>Случайная генерация</button>
-      <button onClick={handleStopGame}>Стоп</button>
-      <button onClick={handleOneStep}>Один шаг</button>
-      <button onClick={handleClearMatrix}>Отчистить</button>
-      <p>Скорость</p>
-      <InputRadio
-        handleChange={handleRadio}
-        disabled={lifeIsGoing}
-        name="speed"
-        value={1500}
-        currentValue={lifeSpeed}
-        title="Медленно"
-      />
-      <InputRadio
-        handleChange={handleRadio}
-        disabled={lifeIsGoing}
-        name="speed"
-        value={1000}
-        currentValue={lifeSpeed}
-        title="Средне"
-      />
-      <InputRadio
-        handleChange={handleRadio}
-        disabled={lifeIsGoing}
-        name="speed"
-        value={500}
-        currentValue={lifeSpeed}
-        title="Быстро"
-      />
+      <div className="app__size-container">
+        <Input value={width} onChange={changeWidth} min={minSizeMatrix} max={maxSizeMatrix} />
+        <Input value={height} onChange={changeHeight} min={minSizeMatrix} max={maxSizeMatrix} />
+
+        <Button onClick={updateMatrixSize} title="Задать размер" />
+      </div>
+
+      <p className="app__text">Скорость</p>
+      <div className="app__input-container">
+        <InputRadio
+          handleChange={handleRadio}
+          disabled={lifeIsGoing}
+          name="speed"
+          value={1100}
+          currentValue={lifeSpeed}
+          title="Медленно"
+        />
+        <InputRadio
+          handleChange={handleRadio}
+          disabled={lifeIsGoing}
+          name="speed"
+          value={700}
+          currentValue={lifeSpeed}
+          title="Средне"
+        />
+        <InputRadio
+          handleChange={handleRadio}
+          disabled={lifeIsGoing}
+          name="speed"
+          value={300}
+          currentValue={lifeSpeed}
+          title="Быстро"
+        />
+      </div>
       <div className="app__field">
         {matrix.map((line, i) => (
           <div key={i} draggable={false} className="app__line">
