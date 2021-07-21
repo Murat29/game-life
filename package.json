@@ -1,5 +1,6 @@
 {
   "name": "game-life",
+  "homepage": "http://murat29.github.io/game-life",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

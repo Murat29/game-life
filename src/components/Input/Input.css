@@ -10,6 +10,7 @@
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
+  max-height: 28px;
 }
 .input:focus {
   border-color: #000000;

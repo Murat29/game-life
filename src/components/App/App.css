@@ -4,6 +4,7 @@
   align-items: center;
   gap: 10px;
   padding: 20px;
+  overflow: hidden;
 }
 
 .app__title {
@@ -14,11 +15,14 @@
 .app__btn-container {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .app__size-container {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .app__text {
@@ -28,6 +32,12 @@
 .app__input-container {
   display: flex;
   gap: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .app__input-container {
+    flex-direction: column;
+  }
 }
 
 .app__line {
@@ -40,6 +50,12 @@
   border: 1px solid #a7a2a2;
   box-sizing: border-box;
   cursor: crosshair;
+}
+@media screen and (max-width: 510px) {
+  .app__cell {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 .app__cell_live {

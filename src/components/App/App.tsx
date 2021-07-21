@@ -10,16 +10,12 @@ type matrix = number[][];
 
 const App: React.FC = () => {
   const [matrix, setMatrix] = useState<matrix>([]);
-  const [width, setWidth] = useState<number>(10);
-  const [height, setHeight] = useState<number>(10);
+  const [width, setWidth] = useState<number>(15);
+  const [height, setHeight] = useState<number>(15);
   const [isMousePressed, setIsMousePressed] = useState<boolean>(false);
   const [lifeSpeed, setLifeSpeed] = useState<number>(700);
   const [lifeIsGoing, setLifeIsGoing] = useState<boolean>(false);
   const curInterval = useRef<any>();
-
-  // useEffect(() => {
-  //   console.log(curInterval);
-  // }, [curInterval]);
 
   useEffect(() => {
     updateMatrixSize();
@@ -116,7 +112,7 @@ const App: React.FC = () => {
     setMatrix([...matrix]);
   }
 
-  function handleMouseOverCell(i: number, j: number) {
+  function handleOverCell(i: number, j: number) {
     if (isMousePressed) {
       matrix[i][j] = matrix[i][j] === 0 ? 1 : 0;
     }
@@ -176,7 +172,7 @@ const App: React.FC = () => {
           name="speed"
           value={1100}
           currentValue={lifeSpeed}
-          title="Медленно"
+          title="медленная"
         />
         <InputRadio
           handleChange={handleRadio}
@@ -184,7 +180,7 @@ const App: React.FC = () => {
           name="speed"
           value={700}
           currentValue={lifeSpeed}
-          title="Средне"
+          title="средняя"
         />
         <InputRadio
           handleChange={handleRadio}
@@ -192,7 +188,7 @@ const App: React.FC = () => {
           name="speed"
           value={300}
           currentValue={lifeSpeed}
-          title="Быстро"
+          title="быстрая"
         />
       </div>
       <div className="app__field">
@@ -203,7 +199,8 @@ const App: React.FC = () => {
                 key={j}
                 draggable={false}
                 onClick={() => handleClickCell(i, j)}
-                onMouseOver={() => handleMouseOverCell(i, j)}
+                onMouseOver={() => handleOverCell(i, j)}
+                onTouchMove={() => handleOverCell(i, j)}
                 className={`app__cell ${cell && 'app__cell_live'}`}
               ></div>
             ))}
