@@ -200,7 +200,6 @@ const App: React.FC = () => {
                 draggable={false}
                 onClick={() => handleClickCell(i, j)}
                 onMouseOver={() => handleOverCell(i, j)}
-                onTouchMove={() => handleOverCell(i, j)}
                 className={`app__cell ${cell && 'app__cell_live'}`}
               ></div>
             ))}
